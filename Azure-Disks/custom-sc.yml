@@ -1,10 +1,10 @@
-apiVersion: storage.k8s.io/v1
 kind: StorageClass
+apiVersion: storage.k8s.io/v1
 metadata:
-  name: managed-csi
+  name: managed-premium-custom
 provisioner: kubernetes.io/Azure-disk
-reclaimPolicy: Retain # Default is Delete, recommended is retain
+reclaimPolicy: Retain
 allowVolumeExpansion: true
 parameters:
-  storageaccounttype: Premium_LRS  # or we can use Standard_LRS
-  kind: Managed # Default is shared (Other two are managed and dedicated)
+  storageaccounttype: Premium_LRS
+  kind: Managed

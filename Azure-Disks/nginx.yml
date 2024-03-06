@@ -1,15 +1,23 @@
-apiVersion: v1
 kind: Pod
+apiVersion: v1
 metadata:
-  name: nginx
+  name: mypod
 spec:
   containers:
-    - name: nginxfrontend
-      image: nginx
+    - name: mypod
+      image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 250m
+          memory: 256Mi
       volumeMounts:
-      - mountPath: "/mnt/Azure"
-        name: volume
+        - mountPath: "/mnt/azure"
+          name: volume
+          readOnly: false
   volumes:
     - name: volume
       persistentVolumeClaim:
-        claimName: Azure-managed-disk
+        claimName: azure-managed-disk
